@@ -7,12 +7,19 @@ import {ERC4626} from "solady/tokens/ERC4626.sol";
 error ZeroAddress();
 
 contract InvestmentMod is ERC4626, OwnableRoles {
+    //*//////////////////////////////////////////////////////////////////////////
+    //                                 CONSTANTS
+    //////////////////////////////////////////////////////////////////////////*//
+
     address private constant USDC = address(0x3600000000000000000000000000000000000000);
     uint8 private constant USDC_UNDERLYING_DECIMALS = 6;
     uint8 private constant DECIMALS_OFFSET = 12;
     uint256 private constant MIN_DURATION = 365 days;
-    uint256 public constant ADMIN_ROLE = 1;
-    uint256 public constant INVESTOR_ROLE = 2;
+    // uint256(keccak256("bond.admin.role"))
+    uint256 public constant ADMIN_ROLE = 5990507170922064599851912174407407848819374031555223498714203695820960965153;
+    // uint256(keccak256("bond.investor.role"))
+    uint256 public constant INVESTOR_ROLE =
+        100072418519682715403571630713264651455801416692533675711340257043684521151149;
 
     //*//////////////////////////////////////////////////////////////////////////
     //                            BOND SHARES METADATA
