@@ -48,6 +48,10 @@ contract InvestmentMod is ERC4626, OwnableRoles {
         return USDC;
     }
 
+    function totalAssets() public view virtual override returns (uint256) {
+        return super.totalAssets();
+    }
+
     //*//////////////////////////////////////////////////////////////////////////
     //                             BOND SHARES HOOKS
     //////////////////////////////////////////////////////////////////////////*//
