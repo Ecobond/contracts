@@ -27,10 +27,18 @@ contract ProjectMod is ERC721Enumerable, ERC721URIStorage, Ownable, IProjectMod 
         _initializeOwner(_owner);
     }
 
+    //*//////////////////////////////////////////////////////////////////////////
+    //                                 MODIFIERS
+    //////////////////////////////////////////////////////////////////////////*//
+
     modifier onlyCRE() {
         if (_msgSender() != creEndpoint) revert NotCreEntrypoint();
         _;
     }
+
+    //*//////////////////////////////////////////////////////////////////////////
+    //                             EXTERNAL FUNCTIONS
+    //////////////////////////////////////////////////////////////////////////*//
 
     function setCreEntrypointAddress(address _creEndpoint) external onlyOwner {
         creEndpoint = _creEndpoint;
@@ -56,6 +64,10 @@ contract ProjectMod is ERC721Enumerable, ERC721URIStorage, Ownable, IProjectMod 
         }
     }
 
+    //*//////////////////////////////////////////////////////////////////////////
+    //                              PUBLIC FUNCTIONS
+    //////////////////////////////////////////////////////////////////////////*//
+
     /// @dev Returns the token collection name.
     function name() public view virtual override returns (string memory) {
         return "Green Bond Projects";
@@ -80,6 +92,10 @@ contract ProjectMod is ERC721Enumerable, ERC721URIStorage, Ownable, IProjectMod 
         return super.supportsInterface(interfaceId);
     }
 
+    //*//////////////////////////////////////////////////////////////////////////
+    //                             INTERNAL FUNCTIONS
+    //////////////////////////////////////////////////////////////////////////*//
+
     function _update(address to, uint256 tokenId, address auth)
         internal
         virtual
@@ -94,6 +110,10 @@ contract ProjectMod is ERC721Enumerable, ERC721URIStorage, Ownable, IProjectMod 
     }
 
     function _updateProject(uint256 _projectId, string calldata _projectURI) private {
+    //*//////////////////////////////////////////////////////////////////////////
+    //                             PRIVATE FUNCTIONS
+    //////////////////////////////////////////////////////////////////////////*//
+
         _setTokenURI(_projectId, _projectURI);
         emit ProjectUpdated(_projectId, _projectURI);
     }
