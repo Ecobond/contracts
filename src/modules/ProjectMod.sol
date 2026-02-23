@@ -42,10 +42,6 @@ contract ProjectMod is ERC721Enumerable, ERC721URIStorage, Ownable, IProjectMod 
 
     function setCreEntrypointAddress(address _creEndpoint) external onlyOwner {
         creEndpoint = _creEndpoint;
-    }
-
-    function getCreEntrypointAddress() external view returns (address) {
-        return creEndpoint;
         emit CreEntrypointSet(_creEndpoint);
     }
 
@@ -61,6 +57,19 @@ contract ProjectMod is ERC721Enumerable, ERC721URIStorage, Ownable, IProjectMod 
         if (length != _projectURIs.length) revert NotCreEntrypoint();
         for (uint256 i; i < length; ++i) {
             _updateProject(_projectIds[i], _projectURIs[i]);
+    function getCreEntrypointAddress() external view returns (address) {
+        return creEndpoint;
+    }
+
+    function getProjectScore(uint256 _projectId) external view returns (ImpactScore memory) {
+        _requireOwned(_projectId);
+        return projectScores[_projectId];
+    }
+
+    function getProjectScores() external view returns (ImpactScore[] memory projectScores_) {
+        uint256 length = totalSupply();
+        for (uint256 i; i < length; ++i) {
+            projectScores_[i] = projectScores[i];
         }
     }
 
