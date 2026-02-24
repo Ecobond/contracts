@@ -7,9 +7,10 @@ import {ERC721Enumerable} from "@openzeppelin/contracts/token/ERC721/extensions/
 import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import {Ownable} from "solady/auth/Ownable.sol";
 
-event ProjectUpdated(uint256 projectId, string projectURI, ImpactScore impactScore);
-event CreEntrypointSet(address creEntrypoint);
+event ProjectUpdated(uint256 indexed projectId, string projectURI, ImpactScore impactScore);
+event CreEntrypointSet(address indexed creEntrypoint);
 event Whitelisted(address indexed account, bool status);
+
 error NotCreEntrypoint();
 error NotWhitelisted();
 
