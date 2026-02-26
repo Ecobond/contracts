@@ -94,12 +94,12 @@ contract ProjectMod is ERC721Enumerable, ERC721URIStorage, Ownable, IProjectMod 
 
     /// @dev Returns the token collection name.
     function name() public view virtual override returns (string memory) {
-        return "Green Bond Projects";
+        return "Ecobond Projects";
     }
 
     /// @dev Returns the token collection symbol.
     function symbol() public view virtual override returns (string memory) {
-        return "GBP";
+        return "EBP";
     }
 
     function tokenURI(uint256 tokenId) public view virtual override(ERC721, ERC721URIStorage) returns (string memory) {

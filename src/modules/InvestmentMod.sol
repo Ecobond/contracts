@@ -41,12 +41,12 @@ contract InvestmentMod is ERC4626, OwnableRoles {
 
     /// @dev Returns the name of the token.
     function name() public view virtual override returns (string memory) {
-        return "Green Bond Shares";
+        return "Ecobond Shares";
     }
 
     /// @dev Returns the symbol of the token.
     function symbol() public view virtual override returns (string memory) {
-        return "GBS";
+        return "EBS";
     }
 
     /// @dev Returns the address of the underlying asset.
