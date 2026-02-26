@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import {IProjectMod, ImpactScore, ProjectDetails} from "../interfaces/IProjectMod.sol";
 import {OwnableRoles} from "solady/auth/OwnableRoles.sol";
 import {ERC4626} from "solady/tokens/ERC4626.sol";
 
@@ -19,7 +20,7 @@ contract InvestmentMod is ERC4626, OwnableRoles {
     uint256 public constant ADMIN_ROLE = 5990507170922064599851912174407407848819374031555223498714203695820960965153;
     // uint256(keccak256("bond.issuer.role"))
     uint256 public constant ISSUER_ROLE = 8134971354964128561662918087387438297584684331987304161041731369355285421532;
-    address public immutable projectRegistry;
+    IProjectMod public immutable projectMod;
 
     //*//////////////////////////////////////////////////////////////////////////
     //                                  STORAGE
@@ -29,8 +30,9 @@ contract InvestmentMod is ERC4626, OwnableRoles {
     //                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////////////////*//
 
-    constructor(address _owner) {
+    constructor(address _owner, address _projectMod) {
         _initializeOwner(_owner);
+        projectMod = IProjectMod(_projectMod);
     }
 
     //*//////////////////////////////////////////////////////////////////////////
