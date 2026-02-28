@@ -26,6 +26,9 @@ contract InvestmentMod is ERC4626, OwnableRoles {
     //                                  STORAGE
     //////////////////////////////////////////////////////////////////////////*//
 
+    uint256 public totalInvestments;
+    mapping(uint256 => uint256) public projectInvestments;
+
     //*//////////////////////////////////////////////////////////////////////////
     //                                CONSTRUCTOR
     //////////////////////////////////////////////////////////////////////////*//
@@ -55,7 +58,7 @@ contract InvestmentMod is ERC4626, OwnableRoles {
     }
 
     function totalAssets() public view virtual override returns (uint256) {
-        return super.totalAssets();
+        return super.totalAssets() + totalInvestments;
     }
 
     //*//////////////////////////////////////////////////////////////////////////
