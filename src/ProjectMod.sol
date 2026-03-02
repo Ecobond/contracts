@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {IProjectMod, ImpactScore, ProjectDetails} from "../interfaces/IProjectMod.sol";
-import {ERC721, IERC165} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import {ERC721Enumerable} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import {IProjectMod, ImpactScore, ProjectDetails} from "./interfaces/IProjectMod.sol";
+import {ERC721, ERC721Enumerable, IERC165} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import {Ownable} from "solady/auth/Ownable.sol";
 
@@ -84,7 +83,7 @@ contract ProjectMod is ERC721Enumerable, ERC721URIStorage, Ownable, IProjectMod 
 
     function getProjectScores() external view returns (ImpactScore[] memory projectScores_) {
         uint256 length = totalSupply();
-        for (uint256 i; i < length; ++i) {
+        for (uint256 i = 1; i < length; ++i) {
             projectScores_[i] = projectScores[i];
         }
     }
