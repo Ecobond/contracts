@@ -5,25 +5,13 @@ import {InvestmentMod} from "../src/InvestmentMod.sol";
 import {ProjectMod} from "../src/ProjectMod.sol";
 import {IProjectMod} from "../src/interfaces/IProjectMod.sol";
 import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {USDCMock} from "../test/mock/MockUSDC.sol";
 import {Test} from "forge-std/Test.sol";
-
-// Simple ERC20 mock for testing
-contract MockUSDC is ERC20 {
-    constructor() ERC20("USDC", "USDC") {}
-
-    function mint(address to, uint256 amount) public {
-        _mint(to, amount);
-    }
-
-    function decimals() public pure override returns (uint8) {
-        return 6;
-    }
-}
 
 contract InvestmentModTest is Test {
     InvestmentMod public investmentMod;
     ProjectMod public projectMod;
-    MockUSDC public usdc;
+    USDCMock public usdc;
     address public owner;
     address public issuer;
     address public investor;
@@ -36,7 +24,7 @@ contract InvestmentModTest is Test {
         projectOwner = makeAddr("projectOwner");
 
         // Deploy mock USDC
-        usdc = new MockUSDC();
+        usdc = new USDCMock();
 
         // Deploy ProjectMod
         vm.prank(owner);
