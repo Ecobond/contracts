@@ -21,7 +21,7 @@ contract DeployEcobond is Script {
         projectMod = new ProjectMod(msg.sender);
         creEntry = new CREentrypoint(FORWARDER_ADDRESS, address(projectMod));
         investmentMod = new InvestmentMod(msg.sender, address(projectMod), address(usdc));
-        projectMod.setWhitelist(address(creEntry), true);
+        projectMod.setCreEntrypointAddress(address(creEntry));
         projectMod.setWhitelist(DEV_ADDRESS, true);
         vm.stopBroadcast();
     }
