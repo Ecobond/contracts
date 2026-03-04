@@ -18,12 +18,14 @@ contract DeployEcobond is Script, CREhelper {
 
     function run() public {
         vm.startBroadcast();
-        usdc = new USDCMock();
         projectMod = new ProjectMod(msg.sender);
         creEntry = new CREentrypoint(_getSimForwarderAddressByChainId(block.chainid), address(projectMod));
+        usdc = new USDCMock();
         investmentMod = new InvestmentMod(msg.sender, address(projectMod), address(usdc));
         projectMod.setCreEntrypointAddress(address(creEntry));
         projectMod.setWhitelist(DEV_ADDRESS, true);
+        projectMod.setWhitelist(msg.sender, true);
+        projectMod.createProject("ipfs://test");
         vm.stopBroadcast();
     }
 }
